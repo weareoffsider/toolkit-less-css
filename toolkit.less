@@ -87,14 +87,14 @@
 }
 
 // Up to but not inclusive (1px less) the value:
-.to( @unitlessPx, @rules ) {
+.to( @unitlessPx, @rules, @base: 16 ) {
 	@ems: ( ( @unitlessPx - 1 ) / @base );
 	@media screen and ( max-width: ~"@{ems}em" ) {
 		@rules();
 	}
 }
 
-.from-to( @from, @to, @rules ) {
+.from-to( @from, @to, @rules, @base: 16 ) {
 	@fromEms: ( @from / @base );
 	@toEms: ( ( @to - 1 ) / @base );
 	@media screen and (min-width: ~"@{fromEms}em") and (max-width: ~"@{toEms}em") {
