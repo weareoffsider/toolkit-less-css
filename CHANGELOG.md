@@ -2,7 +2,9 @@
 
 All notable changes to this project will be documented in this file.
 
-## Unreleased Version
+## Unreleased Changes
+
+## 0.0.1 - 2014-11-3
 ### Added
 - tint, shade, rem and em custom functions.
 - function for change the base pixel size for custom functions.
