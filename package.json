@@ -8,17 +8,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/dominicwhittle/Toolkit-for-Less-CSS.git"
+    "url": "https://github.com/weareoffsider/toolkit-less-css.git"
   },
   "keywords": [
     "less"
   ],
-  "author": "Dominic Whittle",
-  "license": "???",
+  "author": "Offsider",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/dominicwhittle/Toolkit-for-Less-CSS/issues"
+    "url": "https://github.com/weareoffsider/toolkit-less-css/issues"
   },
-  "homepage": "https://github.com/dominicwhittle/Toolkit-for-Less-CSS",
+  "homepage": "https://github.com/weareoffsider/toolkit-less-css",
   "devDependencies": {
     "gulp": "*",
     "gulp-less": "*"
