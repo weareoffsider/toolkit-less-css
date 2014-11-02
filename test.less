@@ -7,10 +7,16 @@
   top:        rem(0);
   width:      rem(100%);
 
-  .from(500; fallback; {
+  .from(500; legacy; {
     big-city: 'blues';
   });
+
+  .from(600; {
+    color: red;
+  });
 }
+
+@ie8mode: false;
 
 .triangle-test-1 { .triangle(up); }
 .triangle-test-2 { .triangle(left); }

@@ -28,11 +28,13 @@
 	n must be unitless CSS pixels; e.g., 768 or 1024
 	It gets converted to em.
 
+  Media Queries can be tagged with 'legacy' to be used in IE8 stylesheets.
+
 --------------------------------------------------------------------------- */
 
 @ie8mode: false;
-// Inclusive of the value and above.
 
+// Inclusive of the value and above.
 .from-mq(@unitlessPx, @rules, @base) {
 	@ems: ( @unitlessPx / @base );
 	@media screen and (min-width: ~"@{ems}em") {
@@ -57,48 +59,73 @@
 // Up to but not inclusive (1px less) the value:
 
 
-// ie8 fallbacks
+// mixins overloaded for legacy stylesheet (ie8)
+@mediaQueryEmBase: 16;
 
-@mqEmBase: 16;
-
-.from( @unitlessPx; fallback; @rules) when (@ie8mode = false) {
-  .from-mq(@unitlessPx; @rules; @mqEmBase);
+.from( @unitlessPx; legacy; @rules) when (@ie8mode = false) {
+  .from-mq(@unitlessPx; @rules; @mediaQueryEmBase);
 }
 .from( @unitlessPx; @rules) when (@ie8mode = false) {
-  .from-mq(@unitlessPx; @rules; @mqEmBase);
+  .from-mq(@unitlessPx; @rules; @mediaQueryEmBase);
 }
 
 // Up to but not inclusive (1px less) the value:
-.to( @unitlessPx; fallback; @rules) when (@ie8mode = false) {
-  .to-mq(@unitlessPx; @rules; @mqEmBase);
+.to( @unitlessPx; legacy; @rules) when (@ie8mode = false) {
+  .to-mq(@unitlessPx; @rules; @mediaQueryEmBase);
 }
 .to( @unitlessPx; @rules) when (@ie8mode = false) {
-  .to-mq(@unitlessPx; @rules; @mqEmBase);
+  .to-mq(@unitlessPx; @rules; @mediaQueryEmBase);
 }
 
 
-.from-to( @from; @to; fallback; @rules) when (@ie8mode = false) {
-  .from-to-mq(@from; @to; @rules; @mqEmBase);
+.from-to( @from; @to; legacy; @rules) when (@ie8mode = false) {
+  .from-to-mq(@from; @to; @rules; @mediaQueryEmBase);
 }
 .from-to( @from; @to; @rules) when (@ie8mode = false) {
-  .from-to-mq(@from; @to; @rules; @mqEmBase);
+  .from-to-mq(@from; @to; @rules; @mediaQueryEmBase);
 }
 
 
-// ie8 mode, render rules without query, but only if fallback
-.from( @unitlessPx; fallback; @rules) when (@ie8mode = true) {
+// ie8 mode, render rules without query, but only if legacy
+.from( @unitlessPx; legacy; @rules) when (@ie8mode = true) {
 	@rules();
 }
 
-.to( @unitlessPx; fallback; @rules) when (@ie8mode = true) {
+.to( @unitlessPx; legacy; @rules) when (@ie8mode = true) {
 	@rules();
 }
 
-.from-to( @unitlessPx; fallback; @rules) when (@ie8mode = true) {
+.from-to( @unitlessPx; legacy; @rules) when (@ie8mode = true) {
 	@rules();
 }
 
 
+
+/* ---------------------------------------------------------------------------
+
+	Toolkit: Legacy
+	===============
+
+  Only render in a legacy stylesheet (ie8 primarily)
+
+--------------------------------------------------------------------------- */
+
+.legacy(@rules) when (@ie8mode = true) {
+  @rules();
+}
+
+/* ---------------------------------------------------------------------------
+
+	Toolkit: Modern
+	===============
+
+  Don't render in a legacy stylesheet (ie8 primarily)
+
+--------------------------------------------------------------------------- */
+
+.modern(@rules) when (@ie8mode = false) {
+  @rules();
+}
 
 /* ---------------------------------------------------------------------------
 
