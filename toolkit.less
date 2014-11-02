@@ -10,54 +10,6 @@
 
 /* ---------------------------------------------------------------------------
 
-	Toolkit: Rem
-	============
-
-	.rem() takes a @property, and @list of values (in px or unitless) and
-	converts to rem.
-
-	e.g.,
-	.selector {
-		.rem( margin, 32 auto 16 100% );
-		.rem( font-size, 12 );
-	}
-	
-	becomes:
-	.selector {
-		margin: 2rem auto 1rem 100%;
-		font-size: 0.75rem;
-	}
-
-	Makes life a little easier when working from designs specced in pixels.
-
---------------------------------------------------------------------------- */
-
-.rem( @property, @list, @base: 16 ) {
-	@n: length(@list);
-
-	// Only convert numbers that are not percentages or 0;
-	._merge( @px ) when ( isnumber(@px) ) and not ( ispercentage(@px) ) and not ( @px = 0 ) {
-		@rem: ( @px / @base );
-		@{property}+_: unit(@rem, rem);
-	}
-	._merge( @px ) when ( default() ) {
-		@{property}+_: @px;
-	}
-
-	._loop( @n ) when ( @n > 0 ) {
-		._loop((@n - 1));
-
-		@val: extract(@list, @n);
-		._merge( @val ); // merges values onto @property with space character.
-	}
-
-	._loop( @n );
-}
-
-
-
-/* ---------------------------------------------------------------------------
-
 	Toolkit: Media Queries
 	======================
 
@@ -78,28 +30,72 @@
 
 --------------------------------------------------------------------------- */
 
+@ie8mode: false;
 // Inclusive of the value and above.
-.from( @unitlessPx, @rules, @base: 16 ) {
+
+.from-mq(@unitlessPx, @rules, @base) {
 	@ems: ( @unitlessPx / @base );
 	@media screen and (min-width: ~"@{ems}em") {
 		@rules();
 	}
 }
 
-// Up to but not inclusive (1px less) the value:
-.to( @unitlessPx, @rules, @base: 16 ) {
+.to-mq(@unitlessPx, @rules, @base) {
 	@ems: ( ( @unitlessPx - 1 ) / @base );
 	@media screen and ( max-width: ~"@{ems}em" ) {
 		@rules();
 	}
 }
 
-.from-to( @from, @to, @rules, @base: 16 ) {
+.from-to-mq(@from, @to, @rules, @base) {
 	@fromEms: ( @from / @base );
 	@toEms: ( ( @to - 1 ) / @base );
 	@media screen and (min-width: ~"@{fromEms}em") and (max-width: ~"@{toEms}em") {
 		@rules();
 	}
+}
+// Up to but not inclusive (1px less) the value:
+
+
+// ie8 fallbacks
+
+@mqEmBase: 16;
+
+.from( @unitlessPx; fallback; @rules) when (@ie8mode = false) {
+  .from-mq(@unitlessPx; @rules; @mqEmBase);
+}
+.from( @unitlessPx; @rules) when (@ie8mode = false) {
+  .from-mq(@unitlessPx; @rules; @mqEmBase);
+}
+
+// Up to but not inclusive (1px less) the value:
+.to( @unitlessPx; fallback; @rules) when (@ie8mode = false) {
+  .to-mq(@unitlessPx; @rules; @mqEmBase);
+}
+.to( @unitlessPx; @rules) when (@ie8mode = false) {
+  .to-mq(@unitlessPx; @rules; @mqEmBase);
+}
+
+
+.from-to( @from; @to; fallback; @rules) when (@ie8mode = false) {
+  .from-to-mq(@from; @to; @rules; @mqEmBase);
+}
+.from-to( @from; @to; @rules) when (@ie8mode = false) {
+  .from-to-mq(@from; @to; @rules; @mqEmBase);
+}
+
+
+// ie8 mode, render rules without query, but only if fallback
+.from( @unitlessPx; fallback; @rules) when (@ie8mode = true) {
+	@rules();
+}
+
+.to( @unitlessPx; fallback; @rules) when (@ie8mode = true) {
+	@rules();
+}
+
+.from-to( @unitlessPx; fallback; @rules) when (@ie8mode = true) {
+	@rules();
 }
 
 
@@ -234,7 +230,7 @@
 
 --------------------------------------------------------------------------- */
 
-.triangle-up( @width: 0.3em ) {
+.triangle(up, @width: 0.3em ) {
 	display: inline-block;
 	height: 0;
 	width: 0;
@@ -246,7 +242,7 @@
 	border-top-width: 0;
 }
 
-.triangle-down( @width: 0.3em ) {
+.triangle(down, @width: 0.3em ) {
 	display: inline-block;
 	height: 0;
 	width: 0;
@@ -258,7 +254,7 @@
 	border-bottom-width: 0;
 }
 
-.triangle-left( @width: 0.3em ) {
+.triangle(left, @width: 0.3em ) {
 	display: inline-block;
 	height: 0;
 	width: 0;
@@ -270,7 +266,7 @@
 	border-left-width: 0;
 }
 
-.triangle-right( @width: 0.3em ) {
+.triangle(right, @width: 0.3em ) {
 	display: inline-block;
 	height: 0;
 	width: 0;

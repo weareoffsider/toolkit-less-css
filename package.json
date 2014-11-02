@@ -1,0 +1,26 @@
+{
+  "name": "toolkit-less-css",
+  "version": "0.0.1",
+  "description": "Toolkit for Less CSS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dominicwhittle/Toolkit-for-Less-CSS.git"
+  },
+  "keywords": [
+    "less"
+  ],
+  "author": "Dominic Whittle",
+  "license": "???",
+  "bugs": {
+    "url": "https://github.com/dominicwhittle/Toolkit-for-Less-CSS/issues"
+  },
+  "homepage": "https://github.com/dominicwhittle/Toolkit-for-Less-CSS",
+  "devDependencies": {
+    "gulp": "*",
+    "gulp-less": "*"
+  }
+}

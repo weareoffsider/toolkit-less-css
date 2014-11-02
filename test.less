@@ -1,0 +1,16 @@
+@import (reference) "toolkit.less";
+
+.testing {
+  color:      blue;
+  margin:     rem(23);
+  font-size:  rem(20);
+  top:        rem(0);
+  width:      rem(100%);
+
+  .from(500; fallback; {
+    big-city: 'blues';
+  });
+}
+
+.triangle-test-1 { .triangle(up); }
+.triangle-test-2 { .triangle(left); }
