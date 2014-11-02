@@ -12,6 +12,7 @@
 
 	Toolkit: Media Queries
 	======================
+	@since 0.0.1
 
 
 	These mq abstractions don't overlap:
@@ -35,54 +36,53 @@
 @ie8mode: false;
 
 // Inclusive of the value and above.
-.from-mq(@unitlessPx, @rules, @base) {
-	@ems: ( @unitlessPx / @base );
-	@media screen and (min-width: ~"@{ems}em") {
+.from-mq(@unitlessPx, @rules) {
+	@ems: em(@unitlessPx);
+	@media screen and (min-width: @ems) {
 		@rules();
 	}
 }
 
 // Up to but not inclusive (1px less) the value:
-.to-mq(@unitlessPx, @rules, @base) {
-	@ems: ( ( @unitlessPx - 1 ) / @base );
-	@media screen and ( max-width: ~"@{ems}em" ) {
+.to-mq(@unitlessPx, @rules) {
+	@ems: em(@unitlessPx - 1);
+	@media screen and ( max-width: @ems ) {
 		@rules();
 	}
 }
 
-.from-to-mq(@from, @to, @rules, @base) {
-	@fromEms: ( @from / @base );
-	@toEms: ( ( @to - 1 ) / @base );
-	@media screen and (min-width: ~"@{fromEms}em") and (max-width: ~"@{toEms}em") {
+.from-to-mq(@from, @to, @rules) {
+	@fromEms: em(@from);
+	@toEms: em( @to - 1 );
+	@media screen and (min-width: @fromEms) and (max-width: @toEms) {
 		@rules();
 	}
 }
 
 
 // mixins overloaded for legacy stylesheet (ie8)
-@mediaQueryEmBase: 16;
 
 .from( @unitlessPx; legacy; @rules) when (@ie8mode = false) {
-  .from-mq(@unitlessPx; @rules; @mediaQueryEmBase);
+  .from-mq(@unitlessPx; @rules);
 }
 .from( @unitlessPx; @rules) when (@ie8mode = false) {
-  .from-mq(@unitlessPx; @rules; @mediaQueryEmBase);
+  .from-mq(@unitlessPx; @rules);
 }
 
 // Up to but not inclusive (1px less) the value:
 .to( @unitlessPx; legacy; @rules) when (@ie8mode = false) {
-  .to-mq(@unitlessPx; @rules; @mediaQueryEmBase);
+  .to-mq(@unitlessPx; @rules);
 }
 .to( @unitlessPx; @rules) when (@ie8mode = false) {
-  .to-mq(@unitlessPx; @rules; @mediaQueryEmBase);
+  .to-mq(@unitlessPx; @rules);
 }
 
 
 .from-to( @from; @to; legacy; @rules) when (@ie8mode = false) {
-  .from-to-mq(@from; @to; @rules; @mediaQueryEmBase);
+  .from-to-mq(@from; @to; @rules);
 }
 .from-to( @from; @to; @rules) when (@ie8mode = false) {
-  .from-to-mq(@from; @to; @rules; @mediaQueryEmBase);
+  .from-to-mq(@from; @to; @rules);
 }
 
 
@@ -105,6 +105,7 @@
 
 	Toolkit: Legacy
 	===============
+	@since 0.0.1
 
   Only render in a legacy stylesheet (ie8 primarily)
 
@@ -118,6 +119,7 @@
 
 	Toolkit: Modern
 	===============
+	@since 0.0.1
 
   Don't render in a legacy stylesheet (ie8 primarily)
 
@@ -131,6 +133,7 @@
 
 	Toolkit: Clear
 	==============
+	@since 0.0.1
 
 	Clears without margin containment.
 	http://www.cssmojo.com/latest_new_clearfix_so_far/
@@ -151,6 +154,7 @@
 
 	Toolkit: Contain Margins
 	========================
+	@since 0.0.1
 
 --------------------------------------------------------------------------- */
 
@@ -168,18 +172,19 @@
 
 	Toolkit: Font Smoothing
 	=======================
+	@since 0.0.1
 
 	Added 09.09.2014
 	Read: http://maximilianhoffmann.com/posts/better-font-rendering-on-osx
 
 --------------------------------------------------------------------------- */
 
-.font-smoothing( @value ) when ( @value = on ) {
+.font-smoothing(on) {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
 
-.font-smoothing( @value ) when ( @value = off ) {
+.font-smoothing(off) {
 	-webkit-font-smoothing: subpixel-antialiased;
 	-moz-osx-font-smoothing: auto;
 }
@@ -251,6 +256,7 @@
 
 	Toolkit: Triangles
 	==================
+	@since 0.0.1
 
 	Triangles that inherit font as the triangle color.
 	Could probably update the API on this to @width, @direction

@@ -27,14 +27,23 @@ toolkit.loadFunctions(less);
 
 Functions documented in index.js.
 
-Some functions use a base size, which defaults to 16px. You may set the REM Base using:
+Some functions use a base pixel size, which defaults to 16px. You may set the base to something else using:
 ```javascript
 var toolkit = require("toolkit-less-css");
-toolkit.setRemBase(14);
+toolkit.setBasePx(16);
 ```
-
-
 
 
 ## Less
 Code is annotated, read that instead.
+
+
+## Contributors
+Dominic Whittle
+James Rakich
+
+
+## License
+Copyright (c) 2014 Offsider, used under The MIT License (MIT)
+
+License provided in LICENSE.md
