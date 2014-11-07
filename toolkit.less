@@ -310,3 +310,24 @@
 	border-bottom-color: rgba(0,0,0,0);
 	border-right-width: 0;
 }
+
+
+
+/* ---------------------------------------------------------------------------
+
+	Toolkit: Appearance
+	===================
+	@since 0.0.2
+	
+	Appearance isn't supported by Autoprefixer.
+	
+	From Autoprefixer: "Unlike transition, the appearance property is not 
+	a part of any specification. So there is no appearance, only 
+	-moz-appearance and -webkit-appearance."
+
+--------------------------------------------------------------------------- */
+
+.appearance(@value: none) {
+	-webkit-appearance: @value;
+	-moz-appearance: @value;
+}
