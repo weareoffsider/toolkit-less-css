@@ -1,6 +1,6 @@
 {
   "name": "toolkit-less-css",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Toolkit for Less CSS",
   "main": "index.js",
   "scripts": {
