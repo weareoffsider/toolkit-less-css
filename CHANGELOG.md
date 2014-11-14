@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 ## Unreleased Changes
 
+## 0.0.2 - 2014-11-15
+### Added
+- support for strictMath mode (un-necessary parenthesis)
+
 ## 0.0.1 - 2014-11-3
 ### Added
 - tint, shade, rem and em custom functions.

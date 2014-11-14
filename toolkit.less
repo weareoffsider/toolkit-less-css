@@ -45,7 +45,7 @@
 
 // Up to but not inclusive (1px less) the value:
 .to-mq(@unitlessPx, @rules) {
-	@ems: em(@unitlessPx - 1);
+	@ems: em( ( @unitlessPx - 1 ) );
 	@media screen and ( max-width: @ems ) {
 		@rules();
 	}
@@ -53,7 +53,7 @@
 
 .from-to-mq(@from, @to, @rules) {
 	@fromEms: em(@from);
-	@toEms: em( @to - 1 );
+	@toEms: em( ( @to - 1 ) );
 	@media screen and (min-width: @fromEms) and (max-width: @toEms) {
 		@rules();
 	}
