@@ -1,8 +1,14 @@
 @import (reference) "toolkit.less";
 
+@variable: 24px;
 .testing {
+  tester:      rem(@variable);
+  tester-two:  rem((@variable + 3));
+
   color:      tint(rgb(0,0,128), 50);
-  margin:     rem(23);
+  mally:      rem(23rem);
+  padding:    rem(50% 10);
+  margin:     rem(23 45 67);
   font-size:  rem(20, 40);
   top:        em(16, 8);
   width:      rem(100%);

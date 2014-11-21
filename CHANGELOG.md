@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 ## Unreleased Changes
 
+## 0.0.4 - 2014-11-22
+### Fixed
+- incorrect author understanding of LESS tree API, changed to immutable
+  functions to avoid mutating variables in the scope of the rest of the tree
+
 ## 0.0.3 - 2014-11-21
 ### Fixed
 - `.ratio` support for strictMath mode

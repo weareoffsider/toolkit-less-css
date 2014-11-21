@@ -1,4 +1,6 @@
 var BASE_PX = 16;
+var deepcopy = require("deepcopy");
+var less = null;
 
 
 
@@ -10,8 +12,7 @@ var pxToRelativeUnit = function(css, optBase, unit) {
         var out = css.value.map(function(subCss) {
           return pxToRelativeUnit(subCss, optBase, unit);
         });
-        css.value = out;
-        return css;
+        return new less.tree.Expression(out);
     }
 
     // don't convert nil, percentages or auto
@@ -22,12 +23,11 @@ var pxToRelativeUnit = function(css, optBase, unit) {
     // prevent accidental double conversion
     if (css.unit.numerator[0] == unit) return css;
 
-
     // convert using the base pixel size
     var newVal = css.value / basePx;
-    css.value = newVal;
-    css.unit.numerator = [unit];
-    return css;
+    var newUnit = css.unit.clone();
+    newUnit.numerator = [unit];
+    return new(less.tree.Dimension)(newVal, newUnit);
 }
 
 
@@ -90,8 +90,7 @@ var funcs = {
             var diff = 255 - colorValue;
             return colorValue + (perc * diff);
         });
-        css.rgb = newRgb;
-        return css;
+        return new less.tree.Color(newRgb);
     },
 
     shade: function(css, amount) {
@@ -100,8 +99,7 @@ var funcs = {
             var diff = 0 + colorValue;
             return colorValue - (perc * diff);
         });
-        css.rgb = newRgb;
-        return css;
+        return new less.tree.Color(newRgb);
     }
 };
 
@@ -110,7 +108,8 @@ module.exports.setBasePx = function(newBase) {
     BASE_PX = newBase;
 };
 
-module.exports.loadFunctions = function(less) {
+module.exports.loadFunctions = function(newLess) {
+    less = newLess;
     Object.keys(module.exports.functions).forEach(function(key) {
         less.tree.functions[key] = module.exports.functions[key];
     });
