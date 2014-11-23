@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 ## Unreleased Changes
 
+## 0.0.5 - 2014-11-23
+### Fixed
+- removed deepcopy dependency breaking npm require
+
 ## 0.0.4 - 2014-11-22
 ### Fixed
 - incorrect author understanding of LESS tree API, changed to immutable

@@ -1,5 +1,4 @@
 var BASE_PX = 16;
-var deepcopy = require("deepcopy");
 var less = null;
 
 
