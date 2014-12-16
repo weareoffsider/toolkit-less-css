@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 
 ## Unreleased Changes
 
+## 0.1.0 - 2014-12-16
+### Added
+- support for Less 2.0 plugin system.
+
+### Removed
+- support for Less versions < 2.0, as the codebase used hacks to load functions
+
 ## 0.0.5 - 2014-11-23
 ### Fixed
 - removed deepcopy dependency breaking npm require

@@ -110,6 +110,35 @@ module.exports.setBasePx = function(newBase) {
 module.exports.loadFunctions = function(newLess) {
     less = newLess;
     Object.keys(module.exports.functions).forEach(function(key) {
-        less.tree.functions[key] = module.exports.functions[key];
+        less.functions.functionRegistry.add(key, module.exports.functions[key]);
     });
 };
+
+
+// PLUGIN DEFINITION
+module.exports.install = function(newLess, pluginManager) {
+  less = newLess;
+  module.exports.loadFunctions(newLess);
+};
+
+module.exports.printUsage = function() {
+  console.log("");
+  console.log("toolkit-less-css");
+  console.log("----------------");
+  console.log("Set Base Pixel size with \"base-px=16\"");
+  console.log("");
+};
+
+module.exports.setOptions = function(argString) {
+  var args = argString.split(" ").reduce(function(obj, arg) {
+    var arg = arg.split("=");
+    obj[arg[0]] = arg[1];
+    return obj;
+  }, {});
+
+  if (args['base-px']) {
+    module.exports.setBasePx(parseInt(args['base-px']));
+  }
+};
+
+module.exports.minVersion = [2, 0, 0];

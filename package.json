@@ -1,6 +1,6 @@
 {
   "name": "toolkit-less-css",
-  "version": "0.0.5",
+  "version": "0.1.0",
   "description": "Toolkit for Less CSS",
   "main": "index.js",
   "scripts": {
@@ -21,6 +21,7 @@
   "homepage": "https://github.com/weareoffsider/toolkit-less-css",
   "devDependencies": {
     "gulp": "*",
-    "gulp-less": "*"
+    "gulp-less": "*",
+    "less": "^2.1.1"
   }
 }
