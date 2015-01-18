@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 ## Unreleased Changes
 
+## 0.2.0 - 2014-01-18
+### Changed
+- Media Query function no longer uses em function, as media queries default to
+  16 as their base size regardless of html/body font size.
+
 ## 0.1.0 - 2014-12-16
 ### Added
 - support for Less 2.0 plugin system.
