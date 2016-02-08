@@ -13,16 +13,27 @@
   top:        em(16, 8);
   width:      rem(100%);
 
+
+  .to(500 {
+    to-test: 'modern only';
+  });
+
+  .to(500; legacy; {
+    to-test-2: 'modern and legacy';
+  });
+
   .from(500; legacy; {
-    big-city: 'blues';
+    from-test: 'modern and legacy';
   });
 
   .from(600; {
-    color: red;
+    from-test-2: 'modern only';
+  });
+  
+  .legacy({
+    legacy-test: 'legacy only';
   });
 }
-
-@ie8mode: false;
 
 .triangle-test-1 { .triangle(up); }
 .triangle-test-2 { .triangle(left); }

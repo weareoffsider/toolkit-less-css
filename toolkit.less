@@ -62,7 +62,7 @@
 
 // mixins overloaded for legacy stylesheet (ie8)
 
-.from( @unitlessPx; legacy; @rules) when (@ie8mode = false) {
+.from( @unitlessPx; @legacy; @rules) when (@ie8mode = false) {
   .from-mq(@unitlessPx; @rules);
 }
 .from( @unitlessPx; @rules) when (@ie8mode = false) {
@@ -70,7 +70,7 @@
 }
 
 // Up to but not inclusive (1px less) the value:
-.to( @unitlessPx; legacy; @rules) when (@ie8mode = false) {
+.to( @unitlessPx; @legacy; @rules) when (@ie8mode = false) {
   .to-mq(@unitlessPx; @rules);
 }
 .to( @unitlessPx; @rules) when (@ie8mode = false) {
@@ -78,7 +78,7 @@
 }
 
 
-.from-to( @from; @to; legacy; @rules) when (@ie8mode = false) {
+.from-to( @from; @to; @legacy; @rules) when (@ie8mode = false) {
   .from-to-mq(@from; @to; @rules);
 }
 .from-to( @from; @to; @rules) when (@ie8mode = false) {
@@ -87,15 +87,15 @@
 
 
 // ie8 mode, render rules without query, but only if legacy
-.from( @unitlessPx; legacy; @rules) when (@ie8mode = true) {
+.from( @unitlessPx; @legacy; @rules) when (@ie8mode = true) {
 	@rules();
 }
 
-.to( @unitlessPx; legacy; @rules) when (@ie8mode = true) {
+.to( @unitlessPx; @legacy; @rules) when (@ie8mode = true) {
 	@rules();
 }
 
-.from-to( @unitlessPx; legacy; @rules) when (@ie8mode = true) {
+.from-to( @unitlessPx; @legacy; @rules) when (@ie8mode = true) {
 	@rules();
 }
 
