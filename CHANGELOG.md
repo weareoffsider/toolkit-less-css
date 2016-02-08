@@ -3,7 +3,9 @@
 All notable changes to this project will be documented in this file.
 
 ## Unreleased Changes
-## 2015-02-08
+
+
+## 0.2.1 - 2015-02-08
 ### Fixed
 - Missing '@' from 'legacy' variables prevented ie8 fallback styles.
 - "Tests" added for to and legacy mq abstractions.
